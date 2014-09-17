@@ -3,6 +3,7 @@ import subprocess
 import os
 from contextlib import closing
 from sys import exit
+import json
 
 # Author and licensing
 __Author__ = "b-mcg" 
@@ -44,11 +45,14 @@ def convert_contents(glob_object, args):
     elif os.name == 'nt':
 
         # Read in the path from the config file
-        with closing(open(os.path.abspath(os.path.join(os.path.expanduser('~'), '/winpeg/winpeg.conf')), 'r')) as fil:
+        try;
 
-            path = conf['ffmpeg_path']
-        
-        ffmpeg_args     =   [path, '-i']
+            with closing(open(os.path.abspath("{0}\\{1}".format(os.path.expanduser('~'), 'winpeg\\winpeg.conf')), 'r')) as fil:
+
+                conf = json.loads(fil.read())
+                path = conf['ffmpeg_path']
+            
+            ffmpeg_args     =   [path, '-i']
 
     # Loop through files, convert them, and delete original files if -do option was given
     for f in glob_object:
