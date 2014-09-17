@@ -16,7 +16,16 @@ Installation:
 ------------
 ------------
 
-    sudo python2 setup.py install
+    Linux:
+
+        sudo python2 setup.py install
+
+    Windows:
+
+        python.exe setup.py install
+
+        *Note: Make sure you're using Python 2.7
+               Also, if you're downloading the zip make sure to name the extracted folder: winpeg
 
 Example Usage:
 -------------
@@ -29,7 +38,7 @@ Example Usage:
     For Windows users:
         
         Since ffmpeg may not be on the user path and could have been extracted
-        anywhere, I've placed a one line config file: winpeg.conf
+        anywhere, I've included a single option config file: winpeg.conf which tells you what to add
         Edit that file before usage.
 
     For a full listing of options run:
