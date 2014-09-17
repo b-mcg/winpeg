@@ -45,7 +45,7 @@ def convert_contents(glob_object, args):
     elif os.name == 'nt':
 
         # Read in the path from the config file
-        try;
+        try:
 
             with closing(open(os.path.abspath("{0}\\{1}".format(os.path.expanduser('~'), 'winpeg\\winpeg.conf')), 'r')) as fil:
 
@@ -53,6 +53,11 @@ def convert_contents(glob_object, args):
                 path = conf['ffmpeg_path']
             
             ffmpeg_args     =   [path, '-i']
+
+        except IOError:
+
+            print "\nError: could not open file for reading.  Make sure the base directory is named winpeg.\n"
+            exit(1)
 
     # Loop through files, convert them, and delete original files if -do option was given
     for f in glob_object:
